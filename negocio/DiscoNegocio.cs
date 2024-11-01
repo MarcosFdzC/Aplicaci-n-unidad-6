@@ -25,7 +25,7 @@ namespace negocio
                 conexion.ConnectionString = "server=.\\SQLEXPRESS; database=DISCOS_DB; integrated security=true";
                 //poniendo ese . nos permite obtener la direccion con mas facilidad. De lo contrario tendriamos que escribir la dirección local completa, así:          (conexion.ConnectionString = "server=MARCOS\SQLEXPRESS") lo que se tendria que cambiar al pasar el código a otra computadora.
                 comando.CommandType = System.Data.CommandType.Text;
-                comando.CommandText = "select D.Id, D.Titulo, D.FechaLanzamiento, D.CantidadCanciones, D.UrlImagenTapa, E.Descripcion Estilo, TE.Descripcion Edicion from DISCOS D, ESTILOS E, TIPOSEDICION TE where D.IdEstilo = E.Id and D.IdTipoEdicion = TE.Id";
+                comando.CommandText = "select D.Id, D.Titulo, D.FechaLanzamiento, D.CantidadCanciones, D.UrlImagenTapa, E.Descripcion Estilo, TE.Descripcion Edicion, D.IdEstilo, D.IdTipoEdicion from DISCOS D, ESTILOS E, TIPOSEDICION TE where D.IdEstilo = E.Id and D.IdTipoEdicion = TE.Id";
                 comando.Connection = conexion;//indica en que conexion se ejecutará el comando
                 conexion.Open();
                 lector = comando.ExecuteReader();
@@ -42,10 +42,12 @@ namespace negocio
                     //validar lectura NULL
                     if (!(lector["UrlImagenTapa"] is DBNull))
                         aux.ImgUrl = (string)lector["UrlImagenTapa"];
-
+                    
                     aux.Estilo = new Estilo();
+                    aux.Estilo.Id = (int)lector["IdEstilo"];
                     aux.Estilo.Descripcion = (string)lector["Estilo"];
                     aux.Edicion = new Edicion();
+                    aux.Edicion.Id = (int)lector["IdtipoEdicion"];
                     aux.Edicion.Descripcion = (string)lector["Edicion"];
                     lista.Add(aux);
                 }
@@ -82,6 +84,15 @@ namespace negocio
         }
         public void modificar(Disco modificiar)
         {
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                datos.SetearConsulta("");
+            }
+            catch (Exception ex) 
+            { 
+                throw ex; 
+            }
         }
     }
 }

@@ -120,6 +120,7 @@
             // 
             // dtmpLanzamiento
             // 
+            this.dtmpLanzamiento.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dtmpLanzamiento.Location = new System.Drawing.Point(228, 167);
             this.dtmpLanzamiento.Name = "dtmpLanzamiento";
             this.dtmpLanzamiento.Size = new System.Drawing.Size(148, 22);
@@ -211,7 +212,7 @@
             this.Controls.Add(this.lblTitulo);
             this.Name = "frmAltaEdicion";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "Nueva Edicion";
+            this.Text = "Agregar disco";
             this.Load += new System.EventHandler(this.frmAltaEdicion_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pbxDisco)).EndInit();
             this.ResumeLayout(false);

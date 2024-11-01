@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using dominio;
 using negocio;
 
+
 namespace aplicacion_1
 {
     public partial class frmDisco : Form
@@ -50,6 +51,7 @@ namespace aplicacion_1
                 listaDisco = negocio.Listar();
                 dgvDiscos.DataSource = listaDisco;
                 dgvDiscos.Columns["ImgUrl"].Visible = false;
+                dgvDiscos.Columns["Id"].Visible = false;
                 cargaImagen(listaDisco[0].ImgUrl);
 
             }
@@ -63,6 +65,16 @@ namespace aplicacion_1
         {
             frmAltaEdicion alta = new frmAltaEdicion();
             alta.ShowDialog();
+            cargar();
+        }
+
+
+        private void btnModificar_Click(object sender, EventArgs e)
+        {
+            Disco seleccionado;
+            seleccionado = (Disco)dgvDiscos.CurrentRow.DataBoundItem;
+            frmAltaEdicion modificacion = new frmAltaEdicion(seleccionado);
+            modificacion.ShowDialog();
             cargar();
         }
     }
