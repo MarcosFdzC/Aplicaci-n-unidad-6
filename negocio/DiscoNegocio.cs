@@ -82,16 +82,29 @@ namespace negocio
                 dato.CerrarConexion();
             }
         }
-        public void modificar(Disco modificiar)
+        public void modificar(Disco modificar)
         {
             AccesoDatos datos = new AccesoDatos();
             try
             {
-                datos.SetearConsulta("");
+                datos.SetearConsulta("update DISCOS set Titulo = @titulo, FechaLanzamiento = @fecha, CantidadCanciones = @canciones, UrlImagenTapa = @imagen, IdEstilo = @idEstilo, IdTipoEdicion = @idEdicion where id = @Id");
+                datos.SetearParametro("@titulo", modificar.Titulo);
+                datos.SetearParametro("@fecha", modificar.FechaLanzamiento);
+                datos.SetearParametro("@canciones", modificar.CantCanciones);
+                datos.SetearParametro("@imagen", modificar.ImgUrl);
+                datos.SetearParametro("@idEstilo", modificar.Estilo.Id);
+                datos.SetearParametro("@idEdicion", modificar.Edicion.Id);
+                datos.SetearParametro("@id", modificar.Id);
+
+                datos.EjecutarAccion();
             }
             catch (Exception ex) 
             { 
                 throw ex; 
+            }
+            finally
+            {
+                datos.CerrarConexion();
             }
         }
     }

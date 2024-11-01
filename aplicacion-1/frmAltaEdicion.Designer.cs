@@ -104,7 +104,7 @@
             // 
             // txtbCanciones
             // 
-            this.txtbCanciones.Location = new System.Drawing.Point(228, 259);
+            this.txtbCanciones.Location = new System.Drawing.Point(228, 218);
             this.txtbCanciones.Name = "txtbCanciones";
             this.txtbCanciones.Size = new System.Drawing.Size(148, 22);
             this.txtbCanciones.TabIndex = 3;
@@ -112,7 +112,7 @@
             // lblCanciones
             // 
             this.lblCanciones.AutoSize = true;
-            this.lblCanciones.Location = new System.Drawing.Point(64, 265);
+            this.lblCanciones.Location = new System.Drawing.Point(64, 224);
             this.lblCanciones.Name = "lblCanciones";
             this.lblCanciones.Size = new System.Drawing.Size(145, 16);
             this.lblCanciones.TabIndex = 10;
@@ -166,7 +166,7 @@
             // lblUrlImagen
             // 
             this.lblUrlImagen.AutoSize = true;
-            this.lblUrlImagen.Location = new System.Drawing.Point(137, 217);
+            this.lblUrlImagen.Location = new System.Drawing.Point(137, 263);
             this.lblUrlImagen.Name = "lblUrlImagen";
             this.lblUrlImagen.Size = new System.Drawing.Size(72, 16);
             this.lblUrlImagen.TabIndex = 16;
@@ -174,7 +174,7 @@
             // 
             // txtbUrlImagen
             // 
-            this.txtbUrlImagen.Location = new System.Drawing.Point(228, 211);
+            this.txtbUrlImagen.Location = new System.Drawing.Point(228, 257);
             this.txtbUrlImagen.Name = "txtbUrlImagen";
             this.txtbUrlImagen.Size = new System.Drawing.Size(148, 22);
             this.txtbUrlImagen.TabIndex = 2;
