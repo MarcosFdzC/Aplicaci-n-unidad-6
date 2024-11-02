@@ -77,6 +77,26 @@ namespace aplicacion_1
             modificacion.ShowDialog();
             cargar();
         }
+
+        private void btnEliminarFisico_Click(object sender, EventArgs e)
+        {
+            DiscoNegocio eliminado = new DiscoNegocio();
+            Disco seleccionado = new Disco();
+            try
+            {
+                DialogResult respuesta = MessageBox.Show("Eiminando disco!", "Eliminando", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                if(respuesta == DialogResult.Yes)
+                {
+                    seleccionado = (Disco)dgvDiscos.CurrentRow.DataBoundItem;
+                    eliminado.eliminar(seleccionado.Id);
+                    cargar();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+        }
     }
 
    

@@ -18,6 +18,7 @@ namespace aplicacion_1
         public frmAltaEdicion()
         {
             InitializeComponent();
+
         }
         public frmAltaEdicion(Disco disco)
         {
@@ -51,6 +52,7 @@ namespace aplicacion_1
                 }
                 else 
                 {
+
                     negocio.agregar(disco);
                     MessageBox.Show("Agregado exitosamente");
                 }
@@ -85,6 +87,10 @@ namespace aplicacion_1
                     txtbCanciones.Text = disco.CantCanciones.ToString();
                     cboEstilo.SelectedValue = disco.Estilo.Id;
                     cboEdicion.SelectedValue = disco.Edicion.Id;
+                }
+                else
+                {
+                    disco = new Disco();
                 }
             }
             catch(Exception ex)

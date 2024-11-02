@@ -42,7 +42,7 @@ namespace negocio
                     //validar lectura NULL
                     if (!(lector["UrlImagenTapa"] is DBNull))
                         aux.ImgUrl = (string)lector["UrlImagenTapa"];
-                    
+
                     aux.Estilo = new Estilo();
                     aux.Estilo.Id = (int)lector["IdEstilo"];
                     aux.Estilo.Descripcion = (string)lector["Estilo"];
@@ -67,13 +67,13 @@ namespace negocio
             AccesoDatos dato = new AccesoDatos();
             try
             {
-                dato.SetearConsulta( "Insert into DISCOS (Titulo, FechaLanzamiento, CantidadCanciones, IdEstilo, IdTipoEdicion, UrlImagenTapa) values ( '" + nuevo.Titulo +"', '"+ nuevo.FechaLanzamiento.ToString("yyyy-MM-dd")+"', "+ nuevo.CantCanciones +", @IdEstilo, @IdTipoEdicion, @UrlImagen)");
+                dato.SetearConsulta("Insert into DISCOS (Titulo, FechaLanzamiento, CantidadCanciones, IdEstilo, IdTipoEdicion, UrlImagenTapa) values ( '" + nuevo.Titulo + "', '" + nuevo.FechaLanzamiento.ToString("yyyy-MM-dd") + "', " + nuevo.CantCanciones + ", @IdEstilo, @IdTipoEdicion, @UrlImagen)");
                 dato.SetearParametro("@UrlImagen", nuevo.ImgUrl);
                 dato.SetearParametro("@IdEstilo", nuevo.Estilo.Id);
                 dato.SetearParametro("@IdTipoEdicion", nuevo.Edicion.Id);
                 dato.EjecutarAccion();
             }
-            catch (Exception ex) 
+            catch (Exception ex)
             {
                 throw ex;
             }
@@ -98,14 +98,29 @@ namespace negocio
 
                 datos.EjecutarAccion();
             }
-            catch (Exception ex) 
-            { 
-                throw ex; 
+            catch (Exception ex)
+            {
+                throw ex;
             }
             finally
             {
                 datos.CerrarConexion();
             }
+        }
+        public void eliminar(int id)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                datos.SetearConsulta("delete from DISCOS where id = @id");
+                datos.SetearParametro("@id", id);
+
+                datos.EjecutarAccion();
+            }
+            catch (Exception ex) 
+            { 
+                throw ex; 
+            }  
         }
     }
 }
