@@ -80,10 +80,17 @@ namespace aplicacion_1
         private void btnModificar_Click(object sender, EventArgs e)
         {
             Disco seleccionado;
-            seleccionado = (Disco)dgvDiscos.CurrentRow.DataBoundItem;
-            frmAltaEdicion modificacion = new frmAltaEdicion(seleccionado);
-            modificacion.ShowDialog();
-            cargar();
+            //antes de guardar en seleccionado compruebo si hay alguna row seleccionada para que no tire un error con excepcion nula
+            if (dgvDiscos.CurrentRow != null)
+            {
+                seleccionado = (Disco)dgvDiscos.CurrentRow.DataBoundItem;
+                frmAltaEdicion modificacion = new frmAltaEdicion(seleccionado);
+                modificacion.ShowDialog();
+                cargar();
+            }
+            else
+                MessageBox.Show("Ningún disco seleccionado");
+            
         }
 
         private void btnEliminarFisico_Click(object sender, EventArgs e)
@@ -120,14 +127,19 @@ namespace aplicacion_1
 
         private void btnFiltro_Click(object sender, EventArgs e)
         {
+            
+        }
+
+        private void txtFiltro_TextChanged(object sender, EventArgs e)
+        {
             List<Disco> listaFiltrada;
             string filtro = txtFiltro.Text;
-            if (filtro != "")
-            { 
+            if (filtro.Length >= 3)
+            {
                 //FindAll es un método que busca dentro de la lista, toupper pone en igualdad de minusculas/mayusculas el contenido de las dos cadenas.
                 //Y el método Contains exije que le pasemos la otra cadena para comparar si contiene esa cadena de caracteres. Ej True si tiene tr, este método detectará a True ya que True contiene la cadena tr.
-                
-                listaFiltrada = listaDisco.FindAll(x => x.Titulo.ToUpper().Contains(filtro.ToUpper()) || x.Estilo.Descripcion.ToUpper().Contains(filtro.ToUpper()) );
+
+                listaFiltrada = listaDisco.FindAll(x => x.Titulo.ToUpper().Contains(filtro.ToUpper()) || x.Estilo.Descripcion.ToUpper().Contains(filtro.ToUpper()));
                 //despues del OR || le agrego otra condición para que filtre por Estilo tambien.
             }
 
